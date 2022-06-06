@@ -1,0 +1,67 @@
+:root {
+	--green-0: #ebfbee;
+	--green-100: #d3f9d8;
+	--green-200: #b2f2bb;
+	--green-500: #51cf66;
+	--green-700: #37b24d;
+	--cian-100: #c5f6fa;
+	--cian-400: #3bc9db;
+	--violet-100: #e5dbff;
+	--violet-300: #b197fc;
+	--violet-500: #845ef7;
+	--grey-100: #f1f3f5;
+	--grey-400: #ced4da;
+	--grey-700: #495057;
+	--grey-900: #212529;
+}
+
+header,
+main {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+/* !Fonte título 3d com efeito css- https://acadtec.com.br/blog/desenvolvimento-frontend/texto-3d-com-efeito-css */
+h1 {
+	color: var(--grey-700);
+	text-shadow: 0 2px 0 #ccc, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa,
+		0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+		0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
+		0 20px 20px rgba(0, 0, 0, 0.15);
+}
+
+.game__title {
+	font-size: 4rem;
+	text-align: center;
+}
+
+.game__figure {
+	max-width: 400px;
+}
+
+.game__img {
+	width: 100%;
+}
+
+.wagon__capacity {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.7rem;
+}
+.capacity__input {
+	border: 1px solid var(--grey-700);
+	border-radius: 10px;
+	text-align: center;
+	width: 100%;
+}
+
+.capacity__submit {
+	padding: 0.2rem 0.6rem;
+	border: 1px solid var(--grey-700);
+	border-radius: 10px;
+	background-color: var(--grey-100);
+}

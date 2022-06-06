@@ -1,13 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    Open the console!
-    <script src="oregontrailinheritance.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			description="O jogo Oregon Trail! Escolha a capacidade da sua carroça, coloque seus viajantes dentro dela, alimente-os, faça ações como caçar, curar e oferecer comida! "
+		/>
+		<link rel="stylesheet" href="css/stylesIndex.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<title>Oregon Trail</title>
+	</head>
+	<body>
+		<header>
+			<h1 class="game__title">Oregon Trail</h1>
+			<p class="game__description">Seja bem vindo ao Oregon Trail!</p>
+			<figure class="game__figure">
+				<img
+					src="imgs/oregon-trail.gif"
+					alt="oregon-trail-wagon"
+					class="game__img"
+				/>
+			</figure>
+		</header>
+		<main>
+			<form action="" class="wagon__capacity">
+				<label for="capacity" class="capacity__label"
+					>Número de vagões da sua carroça:</label
+				>
+				<input
+					type="number"
+					min="1"
+					max="20"
+					class="capacity__input"
+					name="capacity__number"
+					placeholder="Digite um número de 1 a 20"
+					required
+				/>
+				<input class="capacity__submit" type="submit" value="Criar carroça" />
+			</form>
+		</main>
+		<script src="/js/create-waggon.js"></script>
+	</body>
 </html>

@@ -1,0 +1,314 @@
+:root {
+	--green-0: #ebfbee;
+	--green-100: #d3f9d8;
+	--green-200: #b2f2bb;
+	--green-500: #51cf66;
+	--green-700: #37b24d;
+	--cyan-100: #c5f6fa;
+	--cyan-400: #3bc9db;
+	--cyan-600: #15aabf;
+	--violet-100: #e5dbff;
+	--violet-300: #b197fc;
+	--violet-500: #845ef7;
+	--grey-100: #f1f3f5;
+	--grey-400: #ced4da;
+	--grey-700: #495057;
+	--grey-900: #212529;
+}
+
+header {
+	display: grid;
+	grid-template-areas: "logo logo" "add-traveler wagon-status";
+	column-gap: 0.4rem;
+}
+.logo {
+	grid-area: logo;
+}
+.logo__title {
+	font-size: 2.5rem;
+	color: var(--grey-700);
+	text-align: center;
+	padding-bottom: 0.8rem;
+}
+.add-traveler {
+	grid-area: add-traveler;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+	border-radius: 10px;
+	border: 1px solid var(--grey-700);
+	height: 200px;
+}
+.add-traveler__label {
+	font-size: 1rem;
+}
+.add-traveler__input {
+	width: 90%;
+	border: 1px solid var(--grey-400);
+	border-radius: 10px;
+	align-self: center;
+	height: 1.5rem;
+}
+.add-traveler__submit {
+	font-size: 1rem;
+	padding: 0.3rem;
+	border-radius: 5px;
+}
+.wagon-status {
+	grid-area: wagon-status;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 35px;
+	width: 100%;
+	border-radius: 10px;
+	border: 1px solid var(--grey-700);
+}
+.wagon-status__title,
+.add-traveler__tittle {
+	font-weight: bold;
+	background-color: var(--grey-400);
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	width: 100%;
+	text-align: center;
+	padding: 4px;
+	font-size: 1rem;
+}
+.wagon-status__info {
+	text-align: center;
+}
+.info__sick {
+}
+.info__number {
+	display: block;
+	padding: 0.2rem;
+	font-weight: bold;
+}
+.sick__number {
+}
+.wagon-status__info {
+}
+.info__slot {
+}
+.slot__number {
+}
+
+.wagon__figure {
+	display: flex;
+	justify-content: center;
+}
+.wagon__figure > img {
+	width: 120px;
+}
+
+.card-list {
+	margin: 1rem 0;
+	width: 100%;
+	overflow-x: scroll;
+	display: flex;
+	justify-content: flex-start;
+	gap: 1rem;
+	padding-bottom: 1rem;
+	scroll-behavior: smooth;
+}
+.card__info {
+	min-width: 200px;
+	max-width: 200px;
+	height: 390px;
+	display: flex;
+	align-items: center;
+
+	flex-direction: column;
+	gap: 1.2rem;
+	text-align: center;
+}
+.card--common {
+}
+
+.card__traveler-name {
+	height: 34px;
+	font-size: 1.2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--grey-400);
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	font-weight: bold;
+	color: var(--grey-900);
+	width: 100%;
+}
+.card__traveler-type {
+	font-size: 1.1rem;
+	font-weight: bold;
+}
+.card__traveler-type--common {
+	color: var(--green-700);
+}
+.card__traveler-type--hunter {
+	color: var(--violet-500);
+}
+.card__traveler-type--doctor {
+	color: var(--cyan-600);
+}
+
+.card__traveler-food {
+	font-size: 1rem;
+}
+.card__traveler-health {
+	font-size: 1rem;
+}
+.card__traveler-hunt {
+	font-size: 1rem;
+	width: 60px;
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+	background-color: var(--grey-100);
+}
+.card__traveler-hunt:hover {
+	cursor: pointer;
+}
+.card__traveler-eat {
+	font-size: 1rem;
+	width: 60px;
+	border-radius: 0.5rem;
+	padding: 0.5rem;
+	background-color: var(--grey-100);
+}
+.card__traveler-eat:hover {
+	cursor: pointer;
+}
+.card__traveler-giveFood {
+	font-size: 1rem;
+	line-height: 1.5rem;
+	width: 180px;
+	border-radius: 0.5rem;
+	padding: 4px;
+}
+.card__traveler-giveFood > label {
+}
+.card__traveler-giveFood > input {
+	margin-left: 0.5rem;
+	width: 25px;
+	text-align: center;
+	font-weight: bold;
+	color: var(--grey-900);
+	border: 1px var(--grey-700) solid;
+	border-radius: 5px;
+}
+.card__traveler-giveFood select {
+	display: block;
+	margin: 0 auto;
+}
+.card__traveler-giveFood button {
+	font-size: 1rem;
+	background-color: var(--grey-100);
+	padding: 0.5rem;
+	border-radius: 5px;
+}
+.card__traveler-giveFood .traveler__option {
+}
+
+.card__traveler-heal {
+	background-color: var(--grey-100);
+	margin-bottom: 0.2rem;
+}
+
+footer {
+}
+.created-wagons {
+}
+.created-wagons__title {
+}
+.created-wagons__buttons {
+}
+.create-new-wagon {
+}
+
+/* PARA FAZER A BORDA BRILHAR => Fazer 3 cores  */
+
+@keyframes glowGreen {
+	0% {
+		border-color: var(--green-100);
+		-webkit-box-shadow: 0 0 5px var(--green-100);
+		-moz-box-shadow: 0 0 5px var(--green-100);
+		box-shadow: 0 0 5px var(--green-100);
+	}
+	50% {
+		border-color: var(--green-500);
+		-webkit-box-shadow: 0 0 5px var(--green-500);
+		-moz-box-shadow: 0 0 5px var(--green-500);
+		box-shadow: 0 0 5px var(--green-500);
+	}
+	100% {
+		border-color: var(--green-700);
+		-webkit-box-shadow: 0 0 5px var(--green-700);
+		-moz-box-shadow: 0 0 5px var(--green-700);
+		box-shadow: 0 0 5px var(--green-700);
+	}
+}
+
+.card--border-green {
+	border: 2px solid var(--green-200);
+	border-radius: 10px;
+	box-shadow: 0 0 5px var(--green-200);
+	-webkit-animation: glowGreen 1s infinite alternate;
+}
+
+@keyframes glowCyan {
+	0% {
+		border-color: var(--cyan-100);
+		-webkit-box-shadow: 0 0 5px var(--cyan-100);
+		-moz-box-shadow: 0 0 5px var(--cyan-100);
+		box-shadow: 0 0 5px var(--cyan-100);
+	}
+	50% {
+		border-color: var(--cyan-400);
+		-webkit-box-shadow: 0 0 5px var(--cyan-400);
+		-moz-box-shadow: 0 0 5px var(--cyan-400);
+		box-shadow: 0 0 5px var(--cyan-400);
+	}
+	100% {
+		border-color: var(--cyan-600);
+		-webkit-box-shadow: 0 0 5px var(--cyan-600);
+		-moz-box-shadow: 0 0 5px var(--cyan-600);
+		box-shadow: 0 0 5px var(--cyan-600);
+	}
+}
+
+.card--border-cyan {
+	border: 2px solid var(--cyan-100);
+	border-radius: 10px;
+	box-shadow: 0 0 5px var(--cyan-100);
+	-webkit-animation: glowCyan 1s infinite alternate;
+}
+
+@keyframes glowViolet {
+	0% {
+		border-color: var(--violet-100);
+		-webkit-box-shadow: 0 0 5px var(--violet-100);
+		-moz-box-shadow: 0 0 5px var(--violet-100);
+		box-shadow: 0 0 5px var(--violet-100);
+	}
+	50% {
+		border-color: var(--violet-300);
+		-webkit-box-shadow: 0 0 5px var(--violet-300);
+		-moz-box-shadow: 0 0 5px var(--violet-300);
+		box-shadow: 0 0 5px var(--violet-300);
+	}
+	100% {
+		border-color: var(--violet-500);
+		-webkit-box-shadow: 0 0 5px var(--violet-500);
+		-moz-box-shadow: 0 0 5px var(--violet-500);
+		box-shadow: 0 0 5px var(--violet-500);
+	}
+}
+
+.card--border-violet {
+	border: 2px solid var(--violet-100);
+	border-radius: 10px;
+	box-shadow: 0 0 5px var(--violet-100);
+	-webkit-animation: glowViolet 1s infinite alternate;
+}
