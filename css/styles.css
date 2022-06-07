@@ -14,6 +14,7 @@
 	--grey-400: #ced4da;
 	--grey-700: #495057;
 	--grey-900: #212529;
+	--border-width: 3.5px;
 }
 
 header {
@@ -49,6 +50,7 @@ header {
 	border-radius: 10px;
 	align-self: center;
 	height: 1.5rem;
+	padding-left: 0.5rem;
 }
 .add-traveler__submit {
 	font-size: 1rem;
@@ -60,39 +62,31 @@ header {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 35px;
+	gap: 20px;
 	width: 100%;
 	border-radius: 10px;
 	border: 1px solid var(--grey-700);
 }
 .wagon-status__title,
 .add-traveler__tittle {
+	text-transform: uppercase;
 	font-weight: bold;
 	background-color: var(--grey-400);
 	border-top-right-radius: 10px;
 	border-top-left-radius: 10px;
 	width: 100%;
 	text-align: center;
-	padding: 4px;
+	padding: 5px;
 	font-size: 1rem;
 }
 .wagon-status__info {
 	text-align: center;
 }
-.info__sick {
-}
+
 .info__number {
 	display: block;
 	padding: 0.2rem;
 	font-weight: bold;
-}
-.sick__number {
-}
-.wagon-status__info {
-}
-.info__slot {
-}
-.slot__number {
 }
 
 .wagon__figure {
@@ -116,7 +110,7 @@ header {
 .card__info {
 	min-width: 200px;
 	max-width: 200px;
-	height: 390px;
+	height: 380px;
 	display: flex;
 	align-items: center;
 
@@ -124,12 +118,12 @@ header {
 	gap: 1.2rem;
 	text-align: center;
 }
-.card--common {
-}
 
 .card__traveler-name {
+	text-transform: uppercase;
+
 	height: 34px;
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -141,6 +135,7 @@ header {
 	width: 100%;
 }
 .card__traveler-type {
+	text-transform: uppercase;
 	font-size: 1.1rem;
 	font-weight: bold;
 }
@@ -227,14 +222,135 @@ footer {
 .create-new-wagon {
 }
 
-/* PARA FAZER A BORDA BRILHAR => Fazer 3 cores  */
+/* !Fonte: Adaptado de: https://codepen.io/alphardex/pen/vYEYGzp  */
 
+.card--border-green {
+	position: relative;
+	background-color: white;
+	border-radius: 10px;
+	margin: var(--border-width);
+}
+
+.card--border-green::after {
+	position: absolute;
+	content: "";
+	top: calc(-1 * var(--border-width));
+	left: calc(-1 * var(--border-width));
+	z-index: -1;
+	width: calc(100% + var(--border-width) * 2);
+	height: calc(100% + var(--border-width) * 2);
+	background: linear-gradient(
+		60deg,
+		#8ce99a,
+		#69db7c,
+		#40c057,
+		#96f2d7,
+		#63e6be,
+		#38d9a9,
+		#0ca678,
+		#099268,
+		#2b8a3e
+	);
+	background-size: 300% 300%;
+	background-position: 0 50%;
+	border-radius: 10px;
+	animation: moveGradient 4s alternate infinite;
+}
+
+.card--border-cyan {
+	position: relative;
+	background-color: white;
+	border-radius: 10px;
+	margin: var(--border-width);
+}
+
+.card--border-cyan::after {
+	position: absolute;
+	content: "";
+	top: calc(-1 * var(--border-width));
+	left: calc(-1 * var(--border-width));
+	z-index: -1;
+	width: calc(100% + var(--border-width) * 2);
+	height: calc(100% + var(--border-width) * 2);
+	background: linear-gradient(
+		60deg,
+		#e7f5ff,
+		#d0ebff,
+		#a5d8ff,
+		#c5f6fa,
+		#66d9e8,
+		#3bc9db,
+		#22b8cf,
+		#15aabf,
+		#1098ad,
+		#0c8599,
+		#364fc7,
+		#5c7cfa,
+		#91a7ff,
+		#0b7285
+	);
+	background-size: 300% 300%;
+	background-position: 0 50%;
+	border-radius: 10px;
+	animation: moveGradient 4s alternate infinite;
+}
+
+.card--border-violet {
+	position: relative;
+	background-color: white;
+	border-radius: 10px;
+	margin: var(--border-width);
+}
+
+.card--border-violet::after {
+	position: absolute;
+	content: "";
+	top: calc(-1 * var(--border-width));
+	left: calc(-1 * var(--border-width));
+	z-index: -1;
+	width: calc(100% + var(--border-width) * 2);
+	height: calc(100% + var(--border-width) * 2);
+	background: linear-gradient(
+		60deg,
+		#f3f0ff,
+		#e5dbff,
+		#d0bfff,
+		#b197fc,
+		#eebefa,
+		#e599f7,
+		#9c36b5,
+		#9775fa,
+		#7950f2,
+		#7048e8,
+		#6741d9,
+		#5f3dc4
+	);
+	background-size: 300% 300%;
+	background-position: 0 50%;
+	border-radius: 10px;
+	animation: moveGradient 4s alternate infinite;
+}
+
+@keyframes moveGradient {
+	50% {
+		background-position: 100% 50%;
+	}
+}
+
+/* PARA FAZER A BORDA BRILHAR => Fazer 3 cores  */
+/* 
 @keyframes glowGreen {
 	0% {
 		border-color: var(--green-100);
 		-webkit-box-shadow: 0 0 5px var(--green-100);
 		-moz-box-shadow: 0 0 5px var(--green-100);
 		box-shadow: 0 0 5px var(--green-100);
+	}
+	25% {
+		border-color: var(--green-200);
+		-webkit-box-shadow: 0 0 5px var(--green-200);
+		-moz-box-shadow: 0 0 5px var(--green-200);
+		box-shadow: 0 0 5px var(--green-200);
 	}
 	50% {
 		border-color: var(--green-500);
@@ -285,6 +401,13 @@ footer {
 	-webkit-animation: glowCyan 1s infinite alternate;
 }
 
+.card--border-violet {
+	border: 2px solid var(--violet-100);
+	border-radius: 10px;
+	box-shadow: 0 0 5px var(--violet-100);
+	-webkit-animation: glowViolet 1s infinite alternate;
+}
+
 @keyframes glowViolet {
 	0% {
 		border-color: var(--violet-100);
@@ -304,11 +427,5 @@ footer {
 		-moz-box-shadow: 0 0 5px var(--violet-500);
 		box-shadow: 0 0 5px var(--violet-500);
 	}
-}
-
-.card--border-violet {
-	border: 2px solid var(--violet-100);
-	border-radius: 10px;
-	box-shadow: 0 0 5px var(--violet-100);
-	-webkit-animation: glowViolet 1s infinite alternate;
-}
+	
+} */

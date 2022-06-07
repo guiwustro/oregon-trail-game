@@ -19,7 +19,6 @@
 				<label for="travelerName" class="add-traveler__label"
 					>Nome do viajante:
 				</label>
-
 				<input
 					type="text"
 					id="travelerName"
@@ -46,13 +45,17 @@
 					class="add-traveler__submit"
 				/>
 			</form>
+
 			<div class="wagon-status">
 				<h3 class="wagon-status__title">Status da carroça</h3>
 				<p class="wagon-status__info info__sick">
-					Viajantes doentes:<span class="sick__number info__number">10</span>
+					Viajantes doentes:<span class="sick__number info__number">-</span>
+				</p>
+				<p class="wagon-status__info info__food">
+					Comida total:<span class="food__number info__number">-</span>
 				</p>
 				<p class="wagon-status__info info__slot">
-					Vagas Restantes:<span class="slot__number info__number">0</span>
+					Vagas Restantes:<span class="slot__number info__number">-</span>
 				</p>
 			</div>
 		</header>
@@ -75,7 +78,6 @@
 			</div>
 			<button class="create-new-wagon"></button>
 		</footer>
-<script src="./js/create-waggon.js"></script>
 		<script src="./js/oregontrailinheritance.js"></script>
 	</body>
 </html>

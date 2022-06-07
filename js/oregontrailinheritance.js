@@ -1,19 +1,10 @@
-// useSemiColon - Use ; at the end of a line e.g Import * from ./app or Import * from ./app; - Default True
-// import goToMainPage from "../js/create-waggon";
-// let teste = require("../js/create-waggon");
-
-// import { initialCapacity } from "./create-waggon.js";
-
-// console.log(initialCapacity);
-
-// console.log(teste);
 let idCountTraveler = 0;
 class Traveler {
 	constructor(name) {
 		this.name = name;
 		this.food = 1;
 		this.isHealthy = true;
-		this.id = idCountTraveler++;
+		this.id = ++idCountTraveler;
 	}
 
 	hunt = () => {
@@ -81,7 +72,7 @@ class Wagon {
 	};
 
 	join = (traveler) => {
-		this.getAvailableSeatCount() > 0
+		return this.getAvailableSeatCount() > 0
 			? this.passengers.push(traveler)
 			: `Não tem espaço para ${traveler.name} entrar na carroça! `;
 	};
@@ -98,10 +89,8 @@ class Wagon {
 //! VERIFICAR COMO EXPORTA A VARIÁVEL Q FOI DIGITADA NA PÁGINA INTERIOR!
 // import { initialCapacity } from "./create-waggon.js";
 
-// console.log(initialCapacity);
-
-//! Supor que a capacidade da carroça seja 4
-const wagon1 = new Wagon(4);
+//! Supor que a capacidade da carroça seja 5
+const wagon1 = new Wagon(5);
 
 //* Identificando os valores
 
@@ -194,7 +183,7 @@ function createTravelerCard(traveler) {
 	const cardType = createCardType(traveler.constructor.name);
 	const cardFood = createCardFood(traveler.constructor.name);
 	const cardIsHealthy = createCardIsHealthy();
-	const cardHunt = createCardHunt(traveler);
+	const cardHunt = createCardHunt(traveler.constructor.name);
 	const cardEat = createCardEat(traveler);
 
 	card.append(cardName, cardType, cardFood, cardIsHealthy, cardHunt, cardEat);
@@ -208,6 +197,7 @@ function createHunterCard(traveler) {
 	card.append(cardGiveFood);
 	return card;
 }
+
 function createDoctorCard(traveler) {
 	const card = createTravelerCard(traveler);
 	const cardHeal = createCardHeal(traveler.id);
@@ -239,6 +229,7 @@ function createCardType(travelerType) {
 	}
 	return type;
 }
+
 function createCardFood(travelerType) {
 	const food = document.createElement("p");
 	food.classList.add("card__traveler-food");
@@ -249,24 +240,34 @@ function createCardFood(travelerType) {
 	}
 	return food;
 }
+
 function createCardIsHealthy() {
 	const isHealthy = document.createElement("p");
 	isHealthy.classList.add("card__traveler-health");
 	isHealthy.innerText = "Saudável";
+	isHealthy.id = `healthy-${idCountTraveler}`;
 	return isHealthy;
 }
-function createCardHunt() {
+
+function createCardHunt(travelerType) {
 	const hunt = document.createElement("button");
 	hunt.classList.add("card__traveler-hunt");
 	hunt.innerText = "Caçar";
+	travelerType == "Hunter"
+		? (hunt.id = `hunt-${idCountTraveler}--hunter`)
+		: (hunt.id = `hunt-${idCountTraveler}`);
+
 	return hunt;
 }
+
 function createCardEat() {
 	const eat = document.createElement("button");
 	eat.classList.add("card__traveler-eat");
 	eat.innerText = "Comer";
+	eat.id = `eat-${idCountTraveler}`;
 	return eat;
 }
+
 function createCardGiveFood(travelerId) {
 	const giveFood = document.createElement("form");
 	giveFood.classList.add("card__traveler-giveFood");
@@ -280,7 +281,7 @@ function createCardGiveFood(travelerId) {
 	const labelSelect = document.createElement("label");
 	labelSelect.innerText = " unidades de comida para ";
 	const select = document.createElement("select");
-
+	select.id = `card__select--giveFood-${travelerId}`;
 	//!Especifico para apenas uma carroça
 
 	wagon1.passengers.forEach(({ id, name }) => {
@@ -300,13 +301,14 @@ function createCardGiveFood(travelerId) {
 
 	return giveFood;
 }
+
 function createCardHeal(travelerId) {
 	const heal = document.createElement("form");
-	giveFood.classList.add("card__traveler-heal");
-
+	heal.classList.add("card__traveler-heal");
 	const labelSelect = document.createElement("label");
 	labelSelect.innerText = " Curar ";
 	const select = document.createElement("select");
+	select.id = `card__select--heal-${travelerId}`;
 
 	//!Especifico para apenas uma carroça
 
@@ -321,23 +323,76 @@ function createCardHeal(travelerId) {
 		}
 	});
 
-	const transferButton = document.createElement("button");
-	transferButton.innerText = "Transferir";
-	heal.append(label, inputNumber, labelSelect, select, transferButton);
+	const healButton = document.createElement("button");
+	healButton.innerText = "Curar";
+	heal.append(labelSelect, select, healButton);
 
-	return giveFood;
-	heal.classList.add("card__traveler-heal");
-	heal.innerText = "Curar";
 	return heal;
 }
 
-function updateNamesGiveFoodAndHeal() {
-	const sickTravelers = document.querySelector(".info__sick");
-	const slotNumber = document.querySelector(".info__slot");
-	document.addEventListener("click");
+function wagonStatus() {
+	document.addEventListener("click", updateSickAndSlot);
 }
+
+wagonStatus();
+
+function updateSickAndSlot() {
+	const sickTravelers = document.querySelector(".sick__number");
+	const slotNumber = document.querySelector(".slot__number");
+	const totalFood = document.querySelector(".food__number");
+	const sickNumber = wagon1.passengers.filter(
+		({ isHealthy }) => isHealthy === false
+	).length;
+	sickTravelers.innerText = sickNumber;
+	slotNumber.innerText = wagon1.getAvailableSeatCount();
+	totalFood.innerText = wagon1.totalFood();
+}
+
+const cardList = document.querySelector(".card-list");
+cardList.addEventListener("click", actionTraveler);
+
+function actionTraveler(event) {
+	if (event.target.tagName === "BUTTON") {
+		const idTraveler = +event.target.id.match(/\d/g)[0];
+		if (event.target.className.includes("card__traveler-hunt")) {
+			huntAction(idTraveler);
+		} else if (event.target.className.includes("card__traveler-eat")) {
+			eatAction(idTraveler);
+		}
+	}
+}
+
+function huntAction(idSearch) {
+	const traveler = wagon1.passengers.find(({ id }) => id === idSearch);
+	traveler.hunt();
+
+	let idButton = `#food-${idSearch}`;
+
+	const foodNumber = document.querySelector(idButton);
+	foodNumber.innerText = traveler.food;
+	return foodNumber;
+}
+
+function eatAction(idSearch) {
+	const traveler = wagon1.passengers.find(({ id }) => id === idSearch);
+	traveler.eat();
+
+	let idButton = `#food-${idSearch}`;
+
+	const foodNumber = document.querySelector(idButton);
+	foodNumber.innerText = traveler.food;
+	return foodNumber;
+}
+
+function giveFoodButton() {}
+
+function healButton() {}
+
+function updateTravelerHealthy() {}
+
+function updateNamesGiveFoodAndHeal() {}
 updateNamesGiveFoodAndHeal();
-// function createWagonCard()
+
 //! Roteiro
 // 1. Criar uma carroça com capacidade X vagas
 
