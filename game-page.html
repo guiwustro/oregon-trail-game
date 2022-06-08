@@ -1,83 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<link rel="stylesheet" href="css/styles.css" />
-		<link rel="stylesheet" href="css/reset.css" />
 
-		<title>Document</title>
-	</head>
-	<body>
-		<header>
-			<div class="logo">
-				<h1 class="logo__title">Oregon Trail</h1>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link rel="stylesheet" href="css/styles.css" />
+	<link rel="stylesheet" href="css/reset.css" />
+
+	<title>Document</title>
+</head>
+
+<body>
+	<header>
+		<div class="logo">
+			<h1 class="logo__title">Oregon Trail</h1>
+		</div>
+		<form class="add-traveler">
+			<h3 class="add-traveler__tittle">Adicionar viajante</h3>
+			<label for="travelerName" class="add-traveler__label">Nome do viajante:
+			</label>
+			<input type="text" id="travelerName" name="travelerName" class="add-traveler__input"
+				placeholder="Digite aqui..." required />
+			<label for="travelerType" class="add-traveler__label">Tipo:
+			</label>
+			<select id="types" name="types" class="add-traveler__input">
+				<option class="input__option" value="common">Comum</option>
+				<option class="input__option" value="hunter">Caçador</option>
+				<option class="input__option" value="doctor">Médico</option>
+
+				<input type="submit" value="Adicionar a carroça" class="add-traveler__submit" />
+		</form>
+
+		<div class="wagon-status">
+			<h3 class="wagon-status__title">Status da carroça</h3>
+			<p class="wagon-status__info info__sick">
+				Viajantes doentes:<span class="sick__number info__number">-</span>
+			</p>
+			<p class="wagon-status__info info__food">
+				Comida total:<span class="food__number info__number">-</span>
+			</p>
+			<p class="wagon-status__info info__slot">
+				Vagas Restantes:<span class="slot__number info__number">-</span>
+			</p>
+		</div>
+	</header>
+
+	<main class="wagon">
+		<figure class="wagon__figure">
+			<img src="imgs/oregon-trail.gif" alt="carroca" />
+		</figure>
+
+		<ul class="card-list">
+		</ul>
+	</main>
+
+	<footer>
+		<div class="created-wagons">
+			<h3 class="created-wagons__title">Carroças criadas</h3>
+			<div class="created-wagons__buttons">
+				<button id="1"></button>
 			</div>
-			<form class="add-traveler">
-				<h3 class="add-traveler__tittle">Adicionar viajante</h3>
-				<label for="travelerName" class="add-traveler__label"
-					>Nome do viajante:
-				</label>
-				<input
-					type="text"
-					id="travelerName"
-					name="travelerName"
-					class="add-traveler__input"
-                    placeholder="Digite aqui..."
-                    required
-				/>
-                <label for="travelerType" class="add-traveler__label"
-					>Tipo:
-				</label>
-				<select
-					id="types"
-					name="types"
-					class="add-traveler__input"
-				>
-                <option class="input__option" value="common">Comum</option>
-                <option class="input__option" value="hunter">Caçador</option>
-                <option class="input__option" value="doctor">Médico</option>
+		</div>
+		<button class="create-new-wagon"></button>
+	</footer>
+	<script src="js/Traveler.js"></script>
+	<script src="js/Hunter.js"></script>
+	<script src="js/Doctor.js"></script>
+	<script src="js/Wagon.js"></script>
+	<script src="js/DomGamePage.js"></script>
+	<script src="js/Testes.js"></script>
+	<!-- <script src="./js/oregontrailinheritance.js"></script> -->
+</body>
 
-				<input
-					type="submit"
-					value="Adicionar a carroça"
-					class="add-traveler__submit"
-				/>
-			</form>
-
-			<div class="wagon-status">
-				<h3 class="wagon-status__title">Status da carroça</h3>
-				<p class="wagon-status__info info__sick">
-					Viajantes doentes:<span class="sick__number info__number">-</span>
-				</p>
-				<p class="wagon-status__info info__food">
-					Comida total:<span class="food__number info__number">-</span>
-				</p>
-				<p class="wagon-status__info info__slot">
-					Vagas Restantes:<span class="slot__number info__number">-</span>
-				</p>
-			</div>
-		</header>
-
-		<main class="wagon">
-			<figure class="wagon__figure">
-				<img src="imgs/oregon-trail.gif" alt="carroca" />
-			</figure>
-
-			<ul class="card-list">
-			</ul>
-		</main>
-
-		<footer>
-			<div class="created-wagons">
-				<h3 class="created-wagons__title">Carroças criadas</h3>
-				<div class="created-wagons__buttons">
-					<button id="1"></button>
-				</div>
-			</div>
-			<button class="create-new-wagon"></button>
-		</footer>
-		<script src="./js/oregontrailinheritance.js"></script>
-	</body>
 </html>
