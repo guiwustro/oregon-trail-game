@@ -15,10 +15,9 @@ class Traveler {
 		if (this.food > 0) {
 			this.isHealthy = true;
 			this.food -= 1;
-			return this.food;
 		} else {
 			this.isHealthy = false;
-			return this.isHealthy;
 		}
+		return this.isHealthy;
 	};
 }

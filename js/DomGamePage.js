@@ -1,6 +1,7 @@
-
 //! Supor que a capacidade da carroça seja 5
-const wagon1 = new Wagon(5);
+const wagonCapacity = localStorage.getItem("initialCapacity");
+
+const wagon1 = new Wagon(wagonCapacity);
 
 //* Identificando os valores
 
@@ -11,7 +12,7 @@ function addTraveler() {
 
 addTraveler();
 
-function getTravelerData(event) {
+function getTravelerName(event) {
 	event.preventDefault();
 	const travelerName = document.querySelector("#travelerName").value;
 	if (travelerName.length > 15) {
@@ -36,14 +37,22 @@ function addCardToList(event) {
 		alert("A carroça está cheia!");
 	} else {
 		cardList.appendChild(card);
+		removeEmptyWagon();
 	}
 
 	//! Fazer um module avisando que a carroça está cheia !
 }
 
+function removeEmptyWagon() {
+	const emptyList = document.querySelector(".card-list__empty");
+	if (emptyList != null) {
+		emptyList.remove();
+	}
+}
+
 //* Criando cards!
 function createCard(event) {
-	const travelerData = getTravelerData(event);
+	const travelerData = getTravelerName(event);
 	if (travelerData.type === "common") {
 		const traveler = new Traveler(travelerData.name);
 		const verifySlotWagon = wagon1.join(traveler);
@@ -182,7 +191,7 @@ function createCardGiveFood(travelerId) {
 	const giveFood = document.createElement("form");
 	giveFood.classList.add("card__traveler-giveFood");
 	const label = document.createElement("label");
-	label.innerText = "Transferir ";
+	label.innerText = "Transferir";
 
 	const inputNumber = document.createElement("input");
 	inputNumber.setAttribute("type", "number");
@@ -192,6 +201,8 @@ function createCardGiveFood(travelerId) {
 	labelSelect.innerText = " unidades de comida para ";
 	const select = document.createElement("select");
 	select.id = `card__select--giveFood-${travelerId}`;
+	select.className = `card__select--giveFood`;
+
 	//!Especifico para apenas uma carroça
 
 	wagon1.passengers.forEach(({ id, name }) => {
@@ -199,7 +210,7 @@ function createCardGiveFood(travelerId) {
 			const labelOptions = document.createElement("option");
 			labelOptions.value = name;
 			labelOptions.className = "traveler__option";
-			labelOptions.id = "heal-option" + id;
+			labelOptions.id = "giveFood-option" + id;
 			labelOptions.innerText = name;
 			select.append(labelOptions);
 		}
@@ -215,10 +226,10 @@ function createCardGiveFood(travelerId) {
 function createCardHeal(travelerId) {
 	const heal = document.createElement("form");
 	heal.classList.add("card__traveler-heal");
-	const labelSelect = document.createElement("label");
-	labelSelect.innerText = " Curar ";
+
 	const select = document.createElement("select");
 	select.id = `card__select--heal-${travelerId}`;
+	select.className = `card__select--heal`;
 
 	//!Especifico para apenas uma carroça
 
@@ -235,7 +246,10 @@ function createCardHeal(travelerId) {
 
 	const healButton = document.createElement("button");
 	healButton.innerText = "Curar";
-	heal.append(labelSelect, select, healButton);
+	healButton.classList.add("card__heal-button");
+	healButton.id = `heal-button-${travelerId}`;
+
+	heal.append(select, healButton);
 
 	return heal;
 }
@@ -296,9 +310,92 @@ function eatAction(idSearch) {
 
 function giveFoodButton() {}
 
-function healButton() {}
+function updateHealthy() {
+	const wagonList = document.querySelector(".card-list");
+	wagonList.addEventListener("click", updateHealthyEatButton);
+	wagonList.addEventListener("click", updateHealthyHealButton);
+}
 
-function updateTravelerHealthy() {}
+updateHealthy();
 
-function updateNamesGiveFoodAndHeal() {}
-updateNamesGiveFoodAndHeal();
+function updateHealthyEatButton(event) {
+	if (event.target.className === "card__traveler-eat") {
+		const idNumber = +event.target.id.match(/\d/g)[0];
+
+		const idHealthyStatus = `#healthy-${idNumber}`;
+		const healthyStatus = document.querySelector(idHealthyStatus);
+
+		const indexTraveler = wagon1.passengers.findIndex(
+			({ id }) => id === idNumber
+		);
+
+		let isHealthyTraveler = wagon1.passengers[indexTraveler].isHealthy;
+
+		isHealthyTraveler = isHealthyTraveler === true ? "Saudável" : "Doente";
+		healthyStatus.innerText = isHealthyTraveler;
+	}
+}
+
+function updateHealthyHealButton(event) {
+	if (event.target.className === "card__heal-button") {
+		event.preventDefault();
+		const idNumber = +event.target.id.match(/\d/g)[0];
+
+		const idSelect = `#card__select--heal-${idNumber}`;
+
+		const select = document.querySelector(idSelect);
+		const selectValue = select.options[select.selectedIndex].value;
+
+		const selectValueIdNumber = selectValue.match(/\d/g)[0];
+
+		const idHealthyStatus = `#healthy-${selectValueIdNumber}`;
+		const healthyStatus = document.querySelector(idHealthyStatus);
+
+		const indexTraveler = wagon1.passengers.findIndex(
+			({ id }) => id === idNumber
+		);
+
+		let isHealthyTraveler = wagon1.passengers[indexTraveler].isHealthy;
+
+		isHealthyTraveler = isHealthyTraveler === true ? "Saudável" : "Doente";
+
+		healthyStatus.innerText = isHealthyTraveler;
+	}
+}
+
+function updateNamesGiveFoodAndHeal() {
+	const selectGiveFood = document.querySelectorAll(".card__select--giveFood");
+	selectGiveFood.forEach((selectItems) => {
+		selectItems.innerText = "";
+		const idTraveler = +selectItems.id.match(/\d/g)[0];
+		wagon1.passengers.forEach(({ id, name }) => {
+			if (idTraveler != id) {
+				const labelOptions = document.createElement("option");
+				labelOptions.value = name;
+				labelOptions.className = "traveler__option";
+				labelOptions.id = "giveFood-option" + id;
+				labelOptions.innerText = name;
+				selectItems.append(labelOptions);
+			}
+		});
+	});
+
+	const selectHeal = document.querySelectorAll(".card__select--heal");
+	selectHeal.forEach((selectItems) => {
+		selectItems.innerText = "";
+		const idTraveler = +selectItems.id.match(/\d/g)[0];
+		wagon1.passengers.forEach(({ id, name }) => {
+			if (idTraveler != id) {
+				const labelOptions = document.createElement("option");
+				labelOptions.value = name;
+				labelOptions.className = "traveler__option";
+				labelOptions.id = "heal-option" + id;
+				labelOptions.innerText = name;
+				selectItems.append(labelOptions);
+			}
+		});
+	});
+}
+
+const inputAddToWagon = document.querySelector(".add-traveler__submit");
+inputAddToWagon.addEventListener("click", updateNamesGiveFoodAndHeal);

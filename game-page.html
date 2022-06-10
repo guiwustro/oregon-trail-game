@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<link rel="stylesheet" href="css/styles.css" />
 	<link rel="stylesheet" href="css/reset.css" />
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<title>Document</title>
 </head>
 
@@ -52,6 +52,11 @@
 		</figure>
 
 		<ul class="card-list">
+			<div class="card-list__empty">
+				<h2 class="empty__title">A carroça está vazia!</h2>
+				<h3 class="empty__sub-title" >Adicione viajantes</h3>
+				<i class="fa-solid fa-person-walking-luggage"></i>
+			</div>
 		</ul>
 	</main>
 
@@ -63,6 +68,7 @@
 			</div>
 		</div>
 		<button class="create-new-wagon"></button>
+		<div class="backToMenu"><a class="backToMenu__button" href="index.html">Voltar ao Menu Inicial</a></div>
 	</footer>
 	<script src="js/Traveler.js"></script>
 	<script src="js/Hunter.js"></script>

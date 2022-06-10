@@ -39,8 +39,26 @@ header {
 	gap: 12px;
 	border-radius: 10px;
 	border: 1px solid var(--grey-700);
-	height: 200px;
+	height: 225px;
 }
+
+.wagon-status__title,
+.add-traveler__tittle {
+	text-transform: uppercase;
+	font-weight: bold;
+	background-color: var(--grey-400);
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	width: 100%;
+	padding: 5px;
+	font-size: 1rem;
+	height: 42px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
 .add-traveler__label {
 	font-size: 1rem;
 }
@@ -67,18 +85,7 @@ header {
 	border-radius: 10px;
 	border: 1px solid var(--grey-700);
 }
-.wagon-status__title,
-.add-traveler__tittle {
-	text-transform: uppercase;
-	font-weight: bold;
-	background-color: var(--grey-400);
-	border-top-right-radius: 10px;
-	border-top-left-radius: 10px;
-	width: 100%;
-	text-align: center;
-	padding: 5px;
-	font-size: 1rem;
-}
+
 .wagon-status__info {
 	text-align: center;
 }
@@ -98,14 +105,44 @@ header {
 }
 
 .card-list {
+	height: 410px;
 	margin: 1rem 0;
 	width: 100%;
 	overflow-x: scroll;
 	display: flex;
 	justify-content: flex-start;
 	gap: 1rem;
-	padding-bottom: 1rem;
 	scroll-behavior: smooth;
+}
+
+.card-list {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid var(--grey-700);
+	border-radius: 1rem;
+}
+
+.card-list__empty {
+	display: grid;
+	grid-template-areas: "title title" "subtitle travelerIcon ";
+	align-items: center;
+	row-gap: 20px;
+	font-size: 3rem;
+	color: var(--grey-900);
+}
+.empty__title {
+	grid-area: title;
+	justify-self: center;
+	font-size: 2rem;
+}
+
+.empty__sub-title {
+	grid-area: subtitle;
+	font-size: 1.5rem;
+}
+.fa-solid .fa-person-walking-luggage {
+	grid-area: travelerIcon;
 }
 .card__info {
 	min-width: 200px;
@@ -113,7 +150,6 @@ header {
 	height: 380px;
 	display: flex;
 	align-items: center;
-
 	flex-direction: column;
 	gap: 1.2rem;
 	text-align: center;
@@ -182,8 +218,7 @@ header {
 	border-radius: 0.5rem;
 	padding: 4px;
 }
-.card__traveler-giveFood > label {
-}
+
 .card__traveler-giveFood > input {
 	margin-left: 0.5rem;
 	width: 25px;
@@ -196,6 +231,9 @@ header {
 .card__traveler-giveFood select {
 	display: block;
 	margin: 0 auto;
+	width: 70%;
+	border: 1px var(--grey-700) solid;
+	border-radius: 5px;
 }
 .card__traveler-giveFood button {
 	font-size: 1rem;
@@ -203,23 +241,29 @@ header {
 	padding: 0.5rem;
 	border-radius: 5px;
 }
-.card__traveler-giveFood .traveler__option {
-}
 
 .card__traveler-heal {
-	background-color: var(--grey-100);
-	margin-bottom: 0.2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	width: 180px;
+	border-radius: 0.5rem;
+	padding: 4px;
 }
 
-footer {
+.card__select--heal {
+	width: 70%;
+	border: 1px var(--grey-700) solid;
+	border-radius: 5px;
 }
-.created-wagons {
-}
-.created-wagons__title {
-}
-.created-wagons__buttons {
-}
-.create-new-wagon {
+.card__heal-button {
+	font-size: 1rem;
+	background-color: var(--grey-100);
+	padding: 0.5rem;
+	border-radius: 5px;
 }
 
 /* !Fonte: Adaptado de: https://codepen.io/alphardex/pen/vYEYGzp  */
@@ -284,7 +328,6 @@ footer {
 		#15aabf,
 		#1098ad,
 		#0c8599,
-		#364fc7,
 		#5c7cfa,
 		#91a7ff,
 		#0b7285
@@ -334,6 +377,32 @@ footer {
 @keyframes moveGradient {
 	50% {
 		background-position: 100% 50%;
+	}
+}
+
+.backToMenu {
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+
+.backToMenu__button {
+	position: sticky;
+}
+
+@media (min-width: 1024px) {
+	.card-list {
+		height: 600px;
+	}
+	.card__info {
+		height: 500px;
+		gap: 35px;
+	}
+}
+@media (min-width: 1440px) {
+	header {
+		margin: 0 auto;
+		max-width: 1440px;
 	}
 }
 
