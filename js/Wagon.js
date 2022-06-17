@@ -12,7 +12,7 @@ class Wagon {
 	join = (traveler) => {
 		return this.getAvailableSeatCount() > 0
 			? this.passengers.push(traveler)
-			: `Não tem espaço para ${traveler.name} entrar na carroça! `;
+			: false;
 	};
 
 	shouldQuarantine = () => {

@@ -40,6 +40,7 @@ header {
 	border-radius: 10px;
 	border: 1px solid var(--grey-700);
 	height: 225px;
+	width: 100%;
 }
 
 .wagon-status__title,
@@ -105,31 +106,34 @@ header {
 }
 
 .card-list {
-	height: 410px;
+	display: flex;
+	align-items: center;
+	border: 1px solid var(--grey-700);
+	height: 425px;
 	margin: 1rem 0;
+	padding: 1rem;
 	width: 100%;
 	overflow-x: scroll;
 	display: flex;
 	justify-content: flex-start;
 	gap: 1rem;
 	scroll-behavior: smooth;
+	border-radius: 1rem;
 }
 
-.card-list {
-	display: flex;
+.card-list--empty {
 	justify-content: center;
-	align-items: center;
-	border: 1px solid var(--grey-700);
-	border-radius: 1rem;
 }
 
 .card-list__empty {
 	display: grid;
 	grid-template-areas: "title title" "subtitle travelerIcon ";
+	justify-content: center;
 	align-items: center;
 	row-gap: 20px;
 	font-size: 3rem;
 	color: var(--grey-900);
+	text-align: center;
 }
 .empty__title {
 	grid-area: title;
@@ -400,9 +404,10 @@ header {
 	}
 }
 @media (min-width: 1440px) {
-	header {
-		margin: 0 auto;
+	body {
 		max-width: 1440px;
+		margin: 0 auto;
+		margin-top: 8px;
 	}
 }
 
