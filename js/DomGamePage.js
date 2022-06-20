@@ -1,6 +1,7 @@
 const wagonCapacity = localStorage.getItem("initialCapacity");
 const wagon1 = new Wagon(wagonCapacity);
 
+import { Modal } from "./Modal.js";
 //* Identificando os valores
 
 function addTraveler() {
@@ -14,30 +15,36 @@ function getTravelerName(event) {
 	event.preventDefault();
 	const travelerName = document.querySelector("#travelerName").value;
 	if (travelerName.length > 15) {
-		alert("O nome deve ter no máximo 15 caracteres");
-		//! Fazer modal
-	} else if (travelerName != "") {
-		const select = document.getElementById("types");
-		const travelerType = select.options[select.selectedIndex].value;
-		return { name: travelerName, type: travelerType };
+		Modal.criarEventoModal(
+			"Não foi possível adicionar o viajante",
+			"O nome deve ter no máximo 15 caracteres"
+		);
+		return;
 	}
-	return "Defina um nome para o viajante";
-	//!
+	if (travelerName === "") {
+		Modal.criarEventoModal(
+			"Não foi possível adicionar o viajante",
+			"Defina um nome para o viajante"
+		);
+		return;
+	}
+	const select = document.getElementById("types");
+	const travelerType = select.options[select.selectedIndex].value;
+	return { name: travelerName, type: travelerType };
 }
 
 function addCardToList(event) {
 	const cardList = document.querySelector(".card-list");
 	const card = createCard(event);
-	if (card === "Defina um nome para o viajante") {
-		//! Avisar para colocar um nome! module
-		alert("Defina um nome para o viajante!");
-	} else if (card === "Carroça cheia") {
-		alert("A carroça está cheia!");
-	} else {
-		cardList.appendChild(card);
-		removeEmptyWagon();
+	if (card === "CarrocaCheia") {
+		Modal.criarEventoModal(
+			"Não foi possível adicionar o viajante",
+			"A carroça já está cheia. Não há vaga para o viajante."
+		);
+		return;
 	}
-	//! Fazer um module avisando que a carroça está cheia !
+	cardList.appendChild(card);
+	removeEmptyWagon();
 }
 
 function removeEmptyWagon() {
@@ -85,7 +92,7 @@ function createChooseCard(travelerData, constructorClass, cardType, className) {
 		card.className = className;
 		return card;
 	}
-	return "Carroça cheia";
+	return "CarrocaCheia";
 }
 
 function createTravelerCard(traveler) {
@@ -177,10 +184,17 @@ function createCardGiveFood(travelerId) {
 	const label = createCardElement("label", "Transferir");
 
 	const inputNumber = document.createElement("input");
+	inputNumber.id = `transfer__input-number-${travelerId}`;
+
 	inputNumber.setAttribute("type", "number");
 	inputNumber.setAttribute("min", "0");
 
-	const labelSelect = createCardElement("label", "unidades de comida para");
+	const labelSelect = createCardElement(
+		"label",
+		"unidades de comida para",
+		"",
+		""
+	);
 	const select = createCardElement(
 		"select",
 		"",
@@ -189,7 +203,12 @@ function createCardGiveFood(travelerId) {
 	);
 	createSelectOption("giveFood-option", select, travelerId);
 
-	const transferButton = createCardElement("button", "Transferir");
+	const transferButton = createCardElement(
+		"button",
+		"Transferir",
+		"transfer__button",
+		`transfer__button-${travelerId}`
+	);
 	giveFood.append(label, inputNumber, labelSelect, select, transferButton);
 	return giveFood;
 }
@@ -254,6 +273,9 @@ function actionTraveler(event) {
 			action("hunt", idTraveler);
 		} else if (event.target.className.includes("card__traveler-eat")) {
 			action("eat", idTraveler);
+		} else if (event.target.className.includes("transfer__button")) {
+			event.preventDefault();
+			transferFoodAction(idTraveler);
 		}
 	}
 }
@@ -261,15 +283,35 @@ function actionTraveler(event) {
 function action(typeAction, idSearch) {
 	const traveler = wagon1.passengers.find(({ id }) => id === idSearch);
 	typeAction === "hunt" ? traveler.hunt() : traveler.eat();
-
-	const idButton = `#food-${idSearch}`;
-
-	const foodNumber = document.querySelector(idButton);
+	const idFood = `#food-${idSearch}`;
+	const foodNumber = document.querySelector(idFood);
 	foodNumber.innerText = traveler.food;
-	return foodNumber;
 }
 
-function giveFoodButton() {}
+function transferFoodAction(idSender) {
+	const travelerSender = wagon1.passengers.find(({ id }) => id === idSender);
+	const foodTransfer = +document.getElementById(
+		`transfer__input-number-${idSender}`
+	).value;
+
+	const idSelect = document.getElementById(
+		`card__select--giveFood-${idSender}`
+	);
+	const selectValue = idSelect.options[idSelect.selectedIndex].value;
+	const travelerRecipient = wagon1.passengers.find(
+		({ name }) => name === selectValue
+	);
+
+	travelerSender.giveFood(travelerRecipient, foodTransfer);
+
+	const idFoodSender = `#food-${idSender}`;
+	const foodNumberSender = document.querySelector(idFoodSender);
+	foodNumberSender.innerText = travelerSender.food;
+
+	const idFoodRecipient = `#food-${travelerRecipient.id}`;
+	const foodNumberRecipient = document.querySelector(idFoodRecipient);
+	foodNumberRecipient.innerText = travelerRecipient.food;
+}
 
 function updateHealthy() {
 	const wagonList = document.querySelector(".card-list");
