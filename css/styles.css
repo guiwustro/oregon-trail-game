@@ -109,7 +109,7 @@ header {
 	display: flex;
 	align-items: center;
 	border: 1px solid var(--grey-700);
-	height: 425px;
+	height: 560px;
 	margin: 1rem 0;
 	padding: 1rem;
 	width: 100%;
@@ -149,19 +149,28 @@ header {
 	grid-area: travelerIcon;
 }
 .card__info {
-	min-width: 200px;
-	max-width: 200px;
-	height: 380px;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	gap: 1.2rem;
+	min-width: 260px;
+	max-width: 260px;
+	display: grid;
+	grid-template-rows: repeat(4, 15px) 1px repeat(2, 32px) 120px;
+	grid-template-areas:
+		"name name"
+		"img type"
+		"img health"
+		"img food"
+		"div div"
+		"eat eat"
+		"hunt hunt"
+		"transfer transfer";
 	text-align: center;
+	gap: 35px;
+	align-items: start;
+	height: 520px;
 }
 
 .card__traveler-name {
 	text-transform: uppercase;
-
+	grid-area: name;
 	height: 34px;
 	font-size: 1.3rem;
 	display: flex;
@@ -174,7 +183,15 @@ header {
 	color: var(--grey-900);
 	width: 100%;
 }
+.card__traveler-img {
+	grid-area: img;
+	height: 120px;
+	justify-self: flex-end;
+	align-self: center;
+	border: 1px solid black;
+}
 .card__traveler-type {
+	grid-area: type;
 	text-transform: uppercase;
 	font-size: 1.1rem;
 	font-weight: bold;
@@ -190,36 +207,52 @@ header {
 }
 
 .card__traveler-food {
+	grid-area: food;
 	font-size: 1rem;
 }
 .card__traveler-health {
+	grid-area: health;
 	font-size: 1rem;
 }
+
+.card__traveler-div {
+	grid-area: div;
+	height: 1px;
+	background-color: var(--grey-900);
+	width: 90%;
+	justify-self: center;
+}
 .card__traveler-hunt {
+	grid-area: hunt;
 	font-size: 1rem;
-	width: 60px;
 	border-radius: 0.5rem;
 	padding: 0.5rem;
 	background-color: var(--grey-100);
+	width: 80%;
+	justify-self: center;
 }
 .card__traveler-hunt:hover {
 	cursor: pointer;
 }
 .card__traveler-eat {
+	grid-area: eat;
 	font-size: 1rem;
-	width: 60px;
 	border-radius: 0.5rem;
 	padding: 0.5rem;
 	background-color: var(--grey-100);
+	width: 80%;
+	justify-self: center;
 }
 .card__traveler-eat:hover {
 	cursor: pointer;
 }
 .card__traveler-giveFood {
+	grid-area: transfer;
 	font-size: 1rem;
 	line-height: 1.5rem;
-	width: 180px;
 	border-radius: 0.5rem;
+	width: 80%;
+	justify-self: center;
 	padding: 4px;
 }
 
@@ -233,9 +266,10 @@ header {
 	border-radius: 5px;
 }
 .card__traveler-giveFood select {
-	display: block;
-	margin: 0 auto;
-	width: 70%;
+	/* /* margin-left: 10px; */
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 100%;
 	border: 1px var(--grey-700) solid;
 	border-radius: 5px;
 }
@@ -244,22 +278,25 @@ header {
 	background-color: var(--grey-100);
 	padding: 0.5rem;
 	border-radius: 5px;
+	width: 100%;
 }
 
 .card__traveler-heal {
+	grid-area: transfer;
 	display: flex;
-	flex-direction: column;
 	align-items: center;
+	flex-direction: column;
 	gap: 10px;
 	font-size: 1rem;
 	line-height: 1.5rem;
-	width: 180px;
+	width: 80%;
+	justify-self: center;
 	border-radius: 0.5rem;
 	padding: 4px;
 }
 
 .card__select--heal {
-	width: 70%;
+	width: 100%;
 	border: 1px var(--grey-700) solid;
 	border-radius: 5px;
 }
@@ -268,6 +305,7 @@ header {
 	background-color: var(--grey-100);
 	padding: 0.5rem;
 	border-radius: 5px;
+	width: 100%;
 }
 
 /* !Fonte: Adaptado de: https://codepen.io/alphardex/pen/vYEYGzp  */
@@ -420,6 +458,7 @@ header {
 .modal__titulo {
 	grid-area: "header";
 	font-size: 1.5rem;
+	line-height: 25px;
 }
 
 .modal__mensagem {
@@ -428,6 +467,7 @@ header {
 	border-top: 1px solid rgba(0, 0, 0, 0.6);
 	border-bottom: 1px solid rgba(0, 0, 0, 0.6);
 	padding: 20px 0;
+	line-height: 22px;
 }
 
 .modal__button {
@@ -445,11 +485,8 @@ header {
 
 @media (min-width: 1024px) {
 	.card-list {
-		height: 600px;
 	}
 	.card__info {
-		height: 500px;
-		gap: 35px;
 	}
 }
 @media (min-width: 1440px) {
@@ -457,6 +494,11 @@ header {
 		max-width: 1440px;
 		margin: 0 auto;
 		margin-top: 8px;
+	}
+	.card-list {
+	}
+	.card__info {
+		min-width: 300px;
 	}
 }
 

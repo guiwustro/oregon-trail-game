@@ -3,10 +3,10 @@ class Hunter extends Traveler {
 		super(name, isHealthy, id);
 		this.food = 2;
 	}
-	hunt() {
+	hunt = () => {
 		return (this.food += 5);
-	}
-	eat() {
+	};
+	eat = () => {
 		if (this.food < 2) {
 			this.food = 0;
 			this.isHealthy = false;
@@ -15,13 +15,13 @@ class Hunter extends Traveler {
 			this.food -= 2;
 		}
 		return this.isHealthy;
-	}
-	giveFood(traveler, numOfFoodUnits) {
+	};
+	giveFood = (traveler, numOfFoodUnits) => {
 		if (numOfFoodUnits > this.food) {
 			return false;
 		} else {
 			this.food -= numOfFoodUnits;
 			traveler.food += numOfFoodUnits;
 		}
-	}
+	};
 }

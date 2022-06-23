@@ -86,6 +86,7 @@ function createCard(event) {
 
 function createChooseCard(travelerData, constructorClass, cardType, className) {
 	const traveler = new constructorClass(travelerData.name);
+	console.log(traveler);
 	const verifySlotWagon = wagon1.join(traveler);
 	if (verifySlotWagon != false) {
 		const card = cardType(traveler);
@@ -103,6 +104,7 @@ function createTravelerCard(traveler) {
 		traveler.name,
 		"card__traveler-name"
 	);
+	const cardImg = createCardImg(traveler.constructor.name);
 	const cardType = createCardType(traveler.constructor.name);
 	const cardFood = createCardFood(traveler);
 	const cardIsHealthy = createCardElement(
@@ -111,6 +113,8 @@ function createTravelerCard(traveler) {
 		"card__traveler-health",
 		`healthy-${idCountTraveler}`
 	);
+
+	const cardDiv = createCardElement("div", "", "card__traveler-div", "");
 	const cardHunt = createCardHunt(traveler.constructor.name);
 	const cardEat = createCardElement(
 		"button",
@@ -119,7 +123,16 @@ function createTravelerCard(traveler) {
 		`eat-${idCountTraveler}`
 	);
 
-	card.append(cardName, cardType, cardFood, cardIsHealthy, cardHunt, cardEat);
+	card.append(
+		cardName,
+		cardImg,
+		cardType,
+		cardIsHealthy,
+		cardFood,
+		cardDiv,
+		cardHunt,
+		cardEat
+	);
 
 	return card;
 }
@@ -162,10 +175,23 @@ function createCardType(travelerType) {
 	return type;
 }
 
+function createCardImg(travelerType) {
+	const element = document.createElement("img");
+	element.classList.add("card__traveler-img");
+	if (travelerType === "Traveler") {
+		element.src = "./imgs/Female adventurer/character_femaleAdventurer_hit.png";
+	} else if (travelerType === "Hunter") {
+		element.src = "./imgs/Male adventurer/character_maleAdventurer_attack0.png";
+	} else if (travelerType === "Doctor") {
+		element.src = "./imgs/Male person/character_malePerson_attack0.png";
+	}
+	return element;
+}
+
 function createCardFood(traveler) {
 	const food = document.createElement("p");
 	food.classList.add("card__traveler-food");
-	food.innerHTML = `Comida = <span id ="food-${idCountTraveler}">${traveler.food}</span>`;
+	food.innerHTML = `<i class ="fa-solid fa-meat"></i> Comida = <span id ="food-${idCountTraveler}">${traveler.food}</span>`;
 	return food;
 }
 
@@ -181,7 +207,12 @@ function createCardHunt(travelerType) {
 
 function createCardGiveFood(travelerId) {
 	const giveFood = createCardElement("form", null, "card__traveler-giveFood");
-	const label = createCardElement("label", "Transferir");
+	const label = createCardElement(
+		"label",
+		"Transferir",
+		"giveFood_label-1",
+		""
+	);
 
 	const inputNumber = document.createElement("input");
 	inputNumber.id = `transfer__input-number-${travelerId}`;
@@ -191,8 +222,8 @@ function createCardGiveFood(travelerId) {
 
 	const labelSelect = createCardElement(
 		"label",
-		"unidades de comida para",
-		"",
+		" unidades de comida para",
+		"giveFood_label-2",
 		""
 	);
 	const select = createCardElement(
@@ -214,6 +245,10 @@ function createCardGiveFood(travelerId) {
 }
 
 function createSelectOption(optionType, select, travelerId) {
+	const firstOption = document.createElement("option");
+	firstOption.value = "";
+	firstOption.innerText = "Escolha um viajante";
+	select.append(firstOption);
 	wagon1.passengers.forEach(({ id, name }) => {
 		if (travelerId != id) {
 			const selectOption = document.createElement("option");
@@ -302,8 +337,12 @@ function transferFoodAction(idSender) {
 		({ name }) => name === selectValue
 	);
 
-	travelerSender.giveFood(travelerRecipient, foodTransfer);
-
+	const giveFood = travelerSender.giveFood(travelerRecipient, foodTransfer);
+	if (giveFood === false)
+		return Modal.criarEventoModal(
+			"Não foi possível fazer a transferência de comida",
+			"O caçador não possui essa quantidade de comida para transferir. Por favor, selecione um número menor."
+		);
 	const idFoodSender = `#food-${idSender}`;
 	const foodNumberSender = document.querySelector(idFoodSender);
 	foodNumberSender.innerText = travelerSender.food;
