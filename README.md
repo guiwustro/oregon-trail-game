@@ -13,8 +13,6 @@
 
 ## Sobre o projeto
 
-<!--  -->
-
 Essa aplicação é composta por duas páginas, a primeira, o usuário deve escolher,
 o número de vagões que a carroça deverá ter e assim que escolhida, o usuário é
 redirecionado para página do jogo. <br/>
@@ -32,13 +30,13 @@ seja, o número de viajantes doentes, a comida total e as vagas restantes.
 
 ## Tecnologias utilizadas
 
-O projeto foi realizado utilizando somente JS, HTML e CSS. Desenvolvido,
+O projeto foi realizado utilizando somente JS, HTML e CSS. Desenvolvido
 utilizando Programação Orientada a Objetos.
 
 ## Usabilidade
 
 <div align="center">
-<img src="screenshots/ecommerce.gif">
+<img src="screenshots/oregon-trail.gif">
 </div>
 
 ## Features
