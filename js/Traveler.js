@@ -9,10 +9,11 @@ class Traveler {
 	}
 
 	hunt = () => {
-		if (this.food === 0) {
+		if (!this.isHealthy) {
 			return false;
 		}
-		return (this.food += 2);
+		this.food += 2;
+		return this.isHealthy;
 	};
 	eat = () => {
 		if (this.food > 0) {

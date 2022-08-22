@@ -6,9 +6,7 @@
 
   <p align="center">
     Baseado no jogo The Oregon Trail, é uma aplicação em que o usuário escolhe quantos vagões terá a sua carroça, e nela consegue adicionar três tipos de viajantes numa carroça. Cada viajante possui ações específicas, podendo ser a de caçar comida, comer e/ou curar. Desenvolvido utilizando Programação Orientada a Objetos.<br/>
-
-    <br />
-    <a href="https://guiwustro.github.io/e-commerce-single-page/">Link do projeto</a>
+    <a href="https://guiwustro.github.io/oregon-trail-game/">Link do projeto</a>
 
   </p>
 </div>
@@ -23,7 +21,7 @@ redirecionado para página do jogo. <br/>
 
 Na página do jogo, o usuário é capaz de adicionar novos viajantes ao vagão. É
 disparado um erro, caso o usuário não digite um nome para o viajante, digite um
-nome com mais de 15 caractéres ou tente adicionar viajantes sem possuir vagas na
+nome com mais de 15 caracteres ou tente adicionar viajantes sem possuir vagas na
 carroça. <br/>
 
 Cada tipo de viajante tem seu cartão personalizado, tendo ações específicas para
@@ -54,7 +52,7 @@ utilizando Programação Orientada a Objetos.
 - [x] Card personalizado acordo com o tipo do viajante adicionado;
 - [x] Ação de comer e caçar para o viajante comum;
 - [x] Ação de comer, caçar e transferir comida para o Caçador;
-- [x] Ação de comer e curar outro viajante para o Doutor;
+- [x] Ação de comer, caçar e curar outro viajante para o Doutor;
 - [x] Responsivo para todas as telas;
 - [x] Modais de notificação ao usuário em caso de transferência de comida sem
       ter a comida suficiente, comer doente, entre outros;

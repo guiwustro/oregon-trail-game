@@ -325,12 +325,13 @@ function actionTraveler(event) {
 function action(typeAction, idSearch) {
 	const traveler = wagon1.passengers.find(({ id }) => id === idSearch);
 	typeAction === "hunt" ? traveler.hunt() : traveler.eat();
-
-	if (typeAction === "hunt" && !traveler.hunt())
+	console.log(typeAction === "hunt" && !traveler.isHealthy);
+	if (typeAction === "hunt" && !traveler.isHealthy) {
 		return Modal.criarEventoModal(
 			"Viajante doente",
 			"O viajante está doente, não é possível caçar, ele deve ser curado por um médico."
 		);
+	}
 
 	const idFood = `#food-${idSearch}`;
 	const foodNumber = document.querySelector(idFood);
@@ -395,6 +396,7 @@ function updateHealthyHealButton(event) {
 		const selectValue = select.options[select.selectedIndex].value;
 		const traveler = wagon1.passengers.find(({ name }) => name === selectValue);
 		const idHealthyStatus = `#healthy-${traveler.id}`;
+		traveler.isHealthy = true;
 		const healthyStatus = document.querySelector(idHealthyStatus);
 		healthyStatus.innerText = "Saudável";
 	}

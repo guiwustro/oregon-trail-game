@@ -6,13 +6,11 @@ export class Hunter extends Traveler {
 		this.food = 2;
 	}
 	hunt = () => {
-		if (this.food === 0) {
-			return Modal.criarEventoModal(
-				"Viajante doente",
-				"O viajante está doente, não é possível caçar, ele deve ser curado por um médico."
-			);
+		if (!this.isHealthy) {
+			return false;
 		}
-		return (this.food += 5);
+		this.food += 5;
+		return true;
 	};
 	eat = () => {
 		if (this.food < 2) {
@@ -41,6 +39,7 @@ export class Hunter extends Traveler {
 		} else {
 			this.food -= numOfFoodUnits;
 			traveler.food += numOfFoodUnits;
+			return true;
 		}
 	};
 }

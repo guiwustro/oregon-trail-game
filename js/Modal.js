@@ -32,8 +32,10 @@ export class Modal {
 	}
 
 	static criarEventoModal(tituloModal, mensagemModal) {
-		const modalButton = Modal.criarModal(tituloModal, mensagemModal);
-		modalButton.addEventListener("click", Modal.removerModal);
+		const newModal = Modal.criarModal(tituloModal, mensagemModal);
+		console.log("teste");
+
+		newModal.addEventListener("click", Modal.removerModal);
 		return;
 	}
 }
