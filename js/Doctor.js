@@ -1,6 +1,6 @@
-class Doctor extends Traveler {
-	constructor(name, food, isHealthy, id) {
-		super(name, food, isHealthy, id);
+export class Doctor extends Traveler {
+	constructor(name, id) {
+		super(name, id);
 	}
 	heal = (traveler) => {
 		traveler.isHealthy = true;

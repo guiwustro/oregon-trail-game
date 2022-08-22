@@ -1,112 +1,46 @@
-# Entrega - Estendendo o Oregon Trail com Herança
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
 
-Para iniciar, faça o clone desse repositório.
+<h1 align="center">Oregon Trail </h1>
 
-Relembre como usar herança/delegação para estender um objeto de classe criando uma nova variação da classe original. Aqui está um exemplo:
+  <p align="center">
+    Baseado no jogo The Oregon Trail, é uma aplicação em que o usuário consegue adicionar três tipos de viajantes numa carroça, cada viajante possui ações, podendo ser a de caçar comida, comer e/ou curar.<br/>
 
-```js
-class Dog {
-   constructor(name, breed, isGoodBoy) {
-      this.name = name;
-      this.breed = breed;
-      this.isGoodBoy = isGoodBoy;
-   }
+    <br />
+    <a href="https://guiwustro.github.io/e-commerce-single-page/">Link do projeto</a>
 
-   sit() {
-       // sitting code here
-   }
-}
- 
-class GuardDog extends Dog {
-   constructor(name, breed, isGoodBoy, attackWord) {
-      super(name, breed, isGoodBoy)
-      this.attackWord = attackWord;
-   }
+  </p>
+</div>
 
-   bark() {
-      // barking code here
-   }
-}
-```
+## Sobre o projeto
 
-Nesta Entrega, você irá estender seu código do Oregon Trail para usar herança para criar dois novos tipos de viajantes: `Hunter` (Caçador) e `Doctor` (Médico). Eles terão todas as outras características de qualquer outro Viajante, com essas diferenças:
+<!--  -->
 
-## Hunter
+Essa aplicação é composta por duas páginas, a primeira, o usuário deve escolher
+o número de vagões que a carroça deverá ter. <br/> Na página do jogo, o usuário
+é capaz de adicionar novos viajantes ao vagão. É disparado um erro, caso o
+usuário não digite um nome para o viajante, digite um nome com mais de 15
+caractéres ou tente adicionar viajantes sem possuir vagas na carroça.
 
-Um Caçador é um Viajante que se dá melhor encontrando comida, mas também precisa de mais comida. Ele começa com 2 comidas em vez de apenas 1 como os outros viajantes. Ele também pode dar comida para outros viajantes:
+## Tecnologias utilizadas
 
-### Método hunt()
+O projeto foi realizado utilizando JavaScript Vanilla, utilizando classes para
+melhor organização, CSS e HTML. A base de estilização utilizada para fazer o
+projeto foi esse Figma.
+https://www.figma.com/file/9ck8OxFkUTtx2DBtzffO4L/M2---Sprint1---Olimp%C3%ADadas-HTML---CSS---JS?node-id=0:1
 
-Aumente a comida do caçador em 5. (Um viajante convencional ganha apenas 2.)
+## Usabilidade
 
-### Método eat()
+<div align="center">
+<img src="screenshots/ecommerce.gif">
+</div>
 
-Consome 2 unidades da comida do caçador. Se um caçador não tiver 2 comidas quando for instruído a comer, ele come o quanto puder (0 ou 1 unidade), mas o caçador não fica mais saudável. (Um viajante normal come apenas 1 unidade de comida.)
+## Features
 
-### Método giveFood(traveler, numOfFoodUnits)
-
-Transfere numOfFoodUnits do caçador para outro viajante. Se o caçador tiver menos comida do que foi instruído a dar, então nenhuma comida é transferida.
-
-## Doctor
-
-Um médico é um viajante que se dá melhor curando outros viajantes, como médico ele deve curar outros viajantes para que eles possam seguir a viagem saudável. Ele possui apenas um método.
-
-### Método heal(traveler)
-
-Este método cura viajantes doentes fazendo com que eles sigam viagem saudáveis.Nesta etapa um viajante será passado como parâmetro para o método .heal(), para viajantes doentes, a propriedade isHealthy do viajante deverá mudar para true. Para viajantes que não estão doentes a saúde do mesmo, deve continuar como verdadeiro
-
-## Teste
-
-Substitua o código de teste no final da sua implementação original de Oregon Trail por este novo código de teste para verificar se ele está funcionando apropriadamente. (Não modifique este código!)
-
-```js
-// Cria uma carroça que comporta 4 pessoas
-let wagon = new Wagon(4);
-// Cria cinco viajantes
-let henrietta = new Traveler('Henrietta');
-let juan = new Traveler('Juan');
-let drsmith = new Doctor('Dr. Smith');
-let sarahunter = new Hunter('Sara');
-let maude = new Traveler('Maude');
- 
-console.log(`#1: There should be 4 available seats. Actual: ${wagon.getAvailableSeatCount()}`);
- 
-wagon.join(henrietta);
-console.log(`#2: There should be 3 available seats. Actual: ${wagon.getAvailableSeatCount()}`);
- 
-wagon.join(juan);
-wagon.join(drsmith);
-wagon.join(sarahunter);
- 
-wagon.join(maude); // Não tem espaço para ela!
-console.log(`#3: There should be 0 available seats. Actual: ${wagon.getAvailableSeatCount()}`);
- 
-console.log(`#4: There should be 5 total food. Actual: ${wagon.totalFood()}`);
- 
-sarahunter.hunt(); // pega mais 5 comidas
-drsmith.hunt();
- 
-console.log(`#5: There should be 12 total food. Actual: ${wagon.totalFood()}`);
- 
-henrietta.eat();
-sarahunter.eat();
-drsmith.eat();
-juan.eat();
-juan.eat(); // juan agora está doente (sick)
- 
-console.log(`#6: Quarantine should be true. Actual: ${wagon.shouldQuarantine()}`);
-console.log(`#7: There should be 7 total food. Actual: ${wagon.totalFood()}`);
- 
-drsmith.heal(juan);
-console.log(`#8: Quarantine should be false. Actual: ${wagon.shouldQuarantine()}`);
- 
-sarahunter.giveFood(juan, 4);
-sarahunter.eat(); // Ela só tem um, então ela come e fica doente
- 
-console.log(`#9: Quarantine should be true. Actual: ${wagon.shouldQuarantine()}`);
-console.log(`#10: There should be 6 total food. Actual: ${wagon.totalFood()}`);
-```
-
-## Envio
-
-Faça o push do código para o seu repositório GitHub e implemente-o via GitHub pages. No Canvas, envie a url do seu GitHub pages (por exemplo https://username.github.io/oregon-trail-inheritance/)
+- [x] Ordenação pela quantidade de melhas de ouro, prata, bronze e total de
+      medalhas;
+- [x] Campo de busca para pesquisa dos países;
+- [x] Ordenação pela posição do país no ranking;
+- [x] Utilização da API https://kenzie-olympics.herokuapp.com/paises para gerar
+      a lista de medalhas;

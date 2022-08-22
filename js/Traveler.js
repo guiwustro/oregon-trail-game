@@ -9,6 +9,9 @@ class Traveler {
 	}
 
 	hunt = () => {
+		if (this.food === 0) {
+			return false;
+		}
 		return (this.food += 2);
 	};
 	eat = () => {

@@ -24,7 +24,6 @@ main {
 	flex-direction: column;
 }
 
-/* !Fonte título 3d com efeito css- https://acadtec.com.br/blog/desenvolvimento-frontend/texto-3d-com-efeito-css */
 h1 {
 	color: var(--grey-700);
 	text-shadow: 0 2px 0 #ccc, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa,
@@ -36,6 +35,7 @@ h1 {
 .game__title {
 	font-size: 4rem;
 	text-align: center;
+	padding: 20px;
 }
 
 .game__figure {

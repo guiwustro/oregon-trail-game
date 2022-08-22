@@ -1,8 +1,16 @@
+import { Doctor } from "./Doctor.js";
+import { Hunter } from "./Hunter.js";
+import { Modal } from "./Modal.js";
+import { Wagon } from "./Wagon.js";
+
 const wagonCapacity = localStorage.getItem("initialCapacity");
 const wagon1 = new Wagon(wagonCapacity);
 
-import { Modal } from "./Modal.js";
-//* Identificando os valores
+function slotsWagonStatus() {
+	const slots = document.querySelector(".slot__number");
+	slots.innerText = wagonCapacity;
+}
+slotsWagonStatus();
 
 function addTraveler() {
 	const submitButton = document.querySelector(".add-traveler__submit");
@@ -86,7 +94,6 @@ function createCard(event) {
 
 function createChooseCard(travelerData, constructorClass, cardType, className) {
 	const traveler = new constructorClass(travelerData.name);
-	console.log(traveler);
 	const verifySlotWagon = wagon1.join(traveler);
 	if (verifySlotWagon != false) {
 		const card = cardType(traveler);
@@ -318,6 +325,13 @@ function actionTraveler(event) {
 function action(typeAction, idSearch) {
 	const traveler = wagon1.passengers.find(({ id }) => id === idSearch);
 	typeAction === "hunt" ? traveler.hunt() : traveler.eat();
+
+	if (typeAction === "hunt" && !traveler.hunt())
+		return Modal.criarEventoModal(
+			"Viajante doente",
+			"O viajante está doente, não é possível caçar, ele deve ser curado por um médico."
+		);
+
 	const idFood = `#food-${idSearch}`;
 	const foodNumber = document.querySelector(idFood);
 	foodNumber.innerText = traveler.food;
@@ -338,11 +352,9 @@ function transferFoodAction(idSender) {
 	);
 
 	const giveFood = travelerSender.giveFood(travelerRecipient, foodTransfer);
-	if (giveFood === false)
-		return Modal.criarEventoModal(
-			"Não foi possível fazer a transferência de comida",
-			"O caçador não possui essa quantidade de comida para transferir. Por favor, selecione um número menor."
-		);
+
+	if (!giveFood) return;
+
 	const idFoodSender = `#food-${idSender}`;
 	const foodNumberSender = document.querySelector(idFoodSender);
 	foodNumberSender.innerText = travelerSender.food;

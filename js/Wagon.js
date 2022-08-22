@@ -1,4 +1,4 @@
-class Wagon {
+export class Wagon {
 	constructor(capacity) {
 		this.capacity = capacity;
 		this.passengers = [];
