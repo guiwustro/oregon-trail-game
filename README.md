@@ -5,7 +5,7 @@
 <h1 align="center">Oregon Trail </h1>
 
   <p align="center">
-    Baseado no jogo The Oregon Trail, é uma aplicação em que o usuário consegue adicionar três tipos de viajantes numa carroça, cada viajante possui ações, podendo ser a de caçar comida, comer e/ou curar.<br/>
+    Baseado no jogo The Oregon Trail, é uma aplicação em que o usuário escolhe quantos vagões terá a sua carroça, e nela consegue adicionar três tipos de viajantes numa carroça. Cada viajante possui ações específicas, podendo ser a de caçar comida, comer e/ou curar. Desenvolvido utilizando Programação Orientada a Objetos.<br/>
 
     <br />
     <a href="https://guiwustro.github.io/e-commerce-single-page/">Link do projeto</a>
@@ -17,18 +17,25 @@
 
 <!--  -->
 
-Essa aplicação é composta por duas páginas, a primeira, o usuário deve escolher
-o número de vagões que a carroça deverá ter. <br/> Na página do jogo, o usuário
-é capaz de adicionar novos viajantes ao vagão. É disparado um erro, caso o
-usuário não digite um nome para o viajante, digite um nome com mais de 15
-caractéres ou tente adicionar viajantes sem possuir vagas na carroça.
+Essa aplicação é composta por duas páginas, a primeira, o usuário deve escolher,
+o número de vagões que a carroça deverá ter e assim que escolhida, o usuário é
+redirecionado para página do jogo. <br/>
+
+Na página do jogo, o usuário é capaz de adicionar novos viajantes ao vagão. É
+disparado um erro, caso o usuário não digite um nome para o viajante, digite um
+nome com mais de 15 caractéres ou tente adicionar viajantes sem possuir vagas na
+carroça. <br/>
+
+Cada tipo de viajante tem seu cartão personalizado, tendo ações específicas para
+cada tipo de viajante. <br/>
+
+A aplicação possui um espaço específico em que mostra o Status da carroça, ou
+seja, o número de viajantes doentes, a comida total e as vagas restantes.
 
 ## Tecnologias utilizadas
 
-O projeto foi realizado utilizando JavaScript Vanilla, utilizando classes para
-melhor organização, CSS e HTML. A base de estilização utilizada para fazer o
-projeto foi esse Figma.
-https://www.figma.com/file/9ck8OxFkUTtx2DBtzffO4L/M2---Sprint1---Olimp%C3%ADadas-HTML---CSS---JS?node-id=0:1
+O projeto foi realizado utilizando somente JS, HTML e CSS. Desenvolvido,
+utilizando Programação Orientada a Objetos.
 
 ## Usabilidade
 
@@ -38,9 +45,18 @@ https://www.figma.com/file/9ck8OxFkUTtx2DBtzffO4L/M2---Sprint1---Olimp%C3%ADadas
 
 ## Features
 
-- [x] Ordenação pela quantidade de melhas de ouro, prata, bronze e total de
-      medalhas;
-- [x] Campo de busca para pesquisa dos países;
-- [x] Ordenação pela posição do país no ranking;
-- [x] Utilização da API https://kenzie-olympics.herokuapp.com/paises para gerar
-      a lista de medalhas;
+- [x] Escolha do número de vagões (até 20);
+- [x] Formulário para o usuário cadastrar novos viajantes
+- [x] Modais de notificação ao usuário, avisando ao usuário em casos de:
+      viajante adicionado não possui nome definido, possui mais de 15 caractéres
+      ou não há mais espaço na carroça;
+- [x] Uma vitrine contendo todos os viajantes adicionados;
+- [x] Card personalizado acordo com o tipo do viajante adicionado;
+- [x] Ação de comer e caçar para o viajante comum;
+- [x] Ação de comer, caçar e transferir comida para o Caçador;
+- [x] Ação de comer e curar outro viajante para o Doutor;
+- [x] Responsivo para todas as telas;
+- [x] Modais de notificação ao usuário em caso de transferência de comida sem
+      ter a comida suficiente, comer doente, entre outros;
+- [x] Botão para voltar ao menu inicial para criar outra carroça do zero,
+      escolhendo uma nova quantidade de vagões;
