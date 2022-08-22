@@ -30,7 +30,7 @@ seja, o número de viajantes doentes, a comida total e as vagas restantes.
 
 ## Tecnologias utilizadas
 
-O projeto foi realizado utilizando somente JS, HTML e CSS. Desenvolvido
+O projeto foi realizado utilizando somente JS, HTML e CSS (Metodologia BEM). Desenvolvido
 utilizando Programação Orientada a Objetos.
 
 ## Usabilidade
